@@ -24,3 +24,13 @@ The newly created child process counts the words as it reads the segment it is a
 To make sure that no portion of the file is left unprocessed, the results are routed via the new pipe back to the parent process.
 The final word count is guaranteed to be accurate even in the event of child process failures thanks to this crash-handling mechanism.
 The program keeps its integrity and produces accurate results by automatically retrying the task assigned to crashed processes.
+
+### Compilation and excecution instructions:
+- usage: wc <filname> [# processes] [crash rate]
+```
+cd Multi-process-and-IPC-word-counter
+make all
+./wc large.txt 10 50
+make clean
+```
+![image](https://github.com/ehh67855/Multi-process-and-IPC-word-counter/assets/89818264/05fec3b3-8f02-4999-b081-aa20bf6a2256)
