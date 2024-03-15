@@ -6,6 +6,7 @@
 #include "wc.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 
 int crashRate = 0;
@@ -19,7 +20,7 @@ count_t word_count(FILE* fp, long offset, long size)
 		count.linecount = 0;
 		count.wordcount = 0;
 		count.charcount = 0;
-		
+
 		printf("[pid %d] reading %ld bytes from offset %ld\n", getpid(), size, offset);
 
 		if(fseek(fp, offset, SEEK_SET) < 0) {
@@ -39,7 +40,7 @@ count_t word_count(FILE* fp, long offset, long size)
 		}
 
 		srand(getpid());
-		if(crashRate > 0 && (rand()%100 < crashRate)) 
+		if(crashRate > 0 && (rand()%100 < crashRate))
 		{
 				printf("[pid %d] crashed.\n", getpid());
 				abort();
@@ -47,4 +48,3 @@ count_t word_count(FILE* fp, long offset, long size)
 
 		return count;
 }
-
